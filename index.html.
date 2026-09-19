@@ -1,13 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Graficación | ISC</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -16,225 +19,281 @@
 
         body {
             font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a, #1e1b4b, #312e81);
-            color: #f8fafc;
+
             min-height: 100vh;
-            padding-bottom: 50px;
+
+            color: white;
+
+            background:
+                radial-gradient(circle at top left, #7c3aed, transparent 35%),
+                radial-gradient(circle at bottom right, #0891b2, transparent 35%),
+                linear-gradient(135deg, #0f172a, #1e1b4b, #172554);
+
+            background-attachment: fixed;
         }
 
-        /* Fondo decorativo */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 350px;
-            height: 350px;
-            background: #8b5cf6;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.25;
-            top: -100px;
-            left: -100px;
-            z-index: -1;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            width: 350px;
-            height: 350px;
-            background: #06b6d4;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.20;
-            bottom: -100px;
-            right: -100px;
-            z-index: -1;
-        }
-
-        /* Encabezado */
         header {
             text-align: center;
-            padding: 55px 20px;
-            background: rgba(15, 23, 42, 0.65);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+            padding: 60px 20px;
+
+            background: rgba(15, 23, 42, 0.80);
+
+            border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.30);
         }
 
         header h1 {
-            font-size: 2.6rem;
-            margin-bottom: 18px;
-            background: linear-gradient(90deg, #c084fc, #67e8f9);
+            font-size: 42px;
+
+            margin-bottom: 20px;
+
+            background: linear-gradient(
+                90deg,
+                #c084fc,
+                #67e8f9
+            );
+
             -webkit-background-clip: text;
+
             -webkit-text-fill-color: transparent;
         }
 
         header p {
-            color: #cbd5e1;
-            font-size: 1rem;
-            margin: 8px 0;
+            margin: 8px;
+
+            color: #dbeafe;
+
+            font-size: 16px;
         }
 
         header strong {
             color: #e9d5ff;
         }
 
-        /* Contenido */
         main {
             width: 90%;
+
             max-width: 1150px;
-            margin: 45px auto;
+
+            margin: 50px auto;
         }
 
         .unidad-seccion {
-            margin-bottom: 55px;
+            margin-bottom: 60px;
         }
 
         .unidad-seccion h2 {
             text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: #e9d5ff;
-            position: relative;
+
+            margin-bottom: 35px;
+
+            font-size: 28px;
+
+            color: #f5d0fe;
         }
 
         .unidad-seccion h2::after {
             content: "";
+
             display: block;
-            width: 90px;
+
+            width: 100px;
+
             height: 4px;
-            margin: 12px auto 0;
+
+            margin: 12px auto;
+
             border-radius: 10px;
-            background: linear-gradient(90deg, #a855f7, #22d3ee);
+
+            background: linear-gradient(
+                90deg,
+                #a855f7,
+                #22d3ee
+            );
         }
 
-        /* Grid */
         .grid-actividades {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
             gap: 25px;
         }
 
-        /* Tarjetas */
         .tarjeta-actividad {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 28px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            background: rgba(255, 255, 255, 0.09);
+
+            border: 1px solid rgba(255, 255, 255, 0.18);
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.30);
+
+            transition: 0.3s;
+        }
+
+        .tarjeta-actividad:hover {
+            transform: translateY(-10px);
+
+            background: rgba(255, 255, 255, 0.14);
+
+            border-color: #c084fc;
+
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.45);
         }
 
         .tarjeta-actividad::before {
             content: "";
+
             position: absolute;
+
             top: 0;
             left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #a855f7, #06b6d4);
-        }
 
-        .tarjeta-actividad:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(192, 132, 252, 0.5);
+            width: 100%;
+
+            height: 5px;
+
+            border-radius: 20px 20px 0 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #a855f7,
+                    #06b6d4
+                );
         }
 
         .tarjeta-actividad h3 {
             color: #67e8f9;
-            font-size: 1.25rem;
+
+            font-size: 21px;
+
             margin-bottom: 15px;
         }
 
         .tarjeta-actividad p {
-            color: #cbd5e1;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            min-height: 75px;
-            margin-bottom: 22px;
+            color: #dbeafe;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            min-height: 90px;
+
+            margin-bottom: 25px;
         }
 
-        /* Botones */
         .btn-enlace {
             display: inline-block;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
+
             padding: 12px 20px;
+
             border-radius: 12px;
-            background: linear-gradient(135deg, #8b5cf6, #06b6d4);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(6, 182, 212, 0.25);
+
+            text-decoration: none;
+
+            color: white;
+
+            font-weight: bold;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8b5cf6,
+                    #06b6d4
+                );
+
+            box-shadow:
+                0 7px 20px rgba(6, 182, 212, 0.25);
+
+            transition: 0.3s;
         }
 
         .btn-enlace:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 22px rgba(139, 92, 246, 0.45);
+            transform: scale(1.06);
+
+            box-shadow:
+                0 10px 25px rgba(139, 92, 246, 0.50);
         }
 
-        /* Pie de página */
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 25px;
+
+            padding: 35px 20px;
+
+            margin-top: 50px;
+
+            background: rgba(15, 23, 42, 0.70);
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.15);
+
             color: #94a3b8;
-            font-size: 0.9rem;
         }
 
         footer span {
             color: #c084fc;
+
             font-weight: bold;
         }
 
-        /* Adaptación para celular */
         @media (max-width: 600px) {
 
-            header {
-                padding: 40px 15px;
-            }
-
             header h1 {
-                font-size: 2rem;
-            }
-
-            main {
-                width: 92%;
+                font-size: 30px;
             }
 
             .unidad-seccion h2 {
-                font-size: 1.4rem;
+                font-size: 22px;
             }
 
             .tarjeta-actividad {
-                padding: 23px;
+                padding: 25px;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
     <header>
 
-        <h1>✨ Portafolio Web de Prácticas ✨</h1>
+        <h1>
+            ✨ Portafolio Web de Prácticas ✨
+        </h1>
 
         <p>
-            <strong>Graficación | Ingeniería en Sistemas Computacionales</strong>
+            <strong>🎨 Graficación</strong>
         </p>
 
         <p>
-            👩‍💻 <strong>Alumno:</strong> Daniela Guadalupe Salazar Suaste
+            👩🏻‍💻 <strong>Alumno:</strong>
+            Daniela Guadalupe Salazar Suaste
         </p>
 
         <p>
-            🎓 <strong>Matrícula:</strong> 251k0031
+            🎓 <strong>Matrícula:</strong>
+            251k0031
         </p>
 
         <p>
-            📚 Ingeniería en Sistemas Computacionales - 3er Semestre
+            💻 Ingeniería en Sistemas Computacionales - 3er Semestre
         </p>
 
     </header>
@@ -242,28 +301,33 @@
 
     <main>
 
-        <!-- UNIDAD 1 -->
         <section class="unidad-seccion">
 
-            <h2>🎨 Unidad 1: Introducción a los ambientes de graficación</h2>
+            <h2>
+                🎨 Unidad 1: Introducción a los ambientes de graficación
+            </h2>
 
             <div class="grid-actividades">
 
                 <div class="tarjeta-actividad">
 
-                    <h3>🖌️ Actividad 1.1: Primitivas</h3>
+                    <h3>
+                        🖌️ Actividad 1.1: Primitivas
+                    </h3>
 
                     <p>
-                        Sistema de coordenadas del Canvas, trazar formas básicas
-                        y controlar posiciones (x, y), anchos, altos y propiedades
-                        de color iniciales mediante código.
+                        Sistema de coordenadas del Canvas, trazar formas
+                        básicas y controlar posiciones (x, y), anchos,
+                        altos y propiedades de color iniciales mediante código.
                     </p>
 
                     <a
                         href="https://editor.p5js.org/251k0031-hue/full/JQPh3MF52"
                         target="_blank"
                         class="btn-enlace">
+
                         🚀 Ver Proyecto 2D
+
                     </a>
 
                 </div>
@@ -271,7 +335,9 @@
 
                 <div class="tarjeta-actividad">
 
-                    <h3>🌈 Actividad 1.2: Colores</h3>
+                    <h3>
+                        🌈 Actividad 1.2: Colores
+                    </h3>
 
                     <p>
                         Aplicación de los formatos para uso de colores
@@ -282,7 +348,9 @@
                         href="https://editor.p5js.org/251k0031-hue/full/m_KrrzSg3"
                         target="_blank"
                         class="btn-enlace">
+
                         🎨 Ver Proyecto
+
                     </a>
 
                 </div>
@@ -290,7 +358,9 @@
 
                 <div class="tarjeta-actividad">
 
-                    <h3>✨ Actividad 1.3: Arte Digital</h3>
+                    <h3>
+                        ✨ Actividad 1.3: Arte Digital
+                    </h3>
 
                     <p>
                         Aplicación de los formatos para uso de colores
@@ -301,7 +371,9 @@
                         href="https://editor.p5js.org/251k0031-hue/full/Fq6JCcdNG"
                         target="_blank"
                         class="btn-enlace">
+
                         🖼️ Ver Proyecto
+
                     </a>
 
                 </div>
@@ -311,16 +383,19 @@
         </section>
 
 
-        <!-- UNIDAD 2 -->
         <section class="unidad-seccion">
 
-            <h2>💻 Unidad 2: Graficación 2D</h2>
+            <h2>
+                💻 Unidad 2: Graficación 2D
+            </h2>
 
             <div class="grid-actividades">
 
                 <div class="tarjeta-actividad">
 
-                    <h3>🔄 Actividad 2.1: Traslación</h3>
+                    <h3>
+                        🔄 Actividad 2.1: Traslación
+                    </h3>
 
                     <p>
                         Implementación de transformaciones lineales
@@ -330,9 +405,10 @@
 
                     <a
                         href="#"
-                        target="_blank"
                         class="btn-enlace">
+
                         🚀 Ver Proyecto
+
                     </a>
 
                 </div>
@@ -340,7 +416,9 @@
 
                 <div class="tarjeta-actividad">
 
-                    <h3>🎮 Actividad 2.2: Mini-Proyecto</h3>
+                    <h3>
+                        🎮 Actividad 2.2: Mini-Proyecto
+                    </h3>
 
                     <p>
                         Réplica de un videojuego clásico aplicando
@@ -350,9 +428,10 @@
 
                     <a
                         href="#"
-                        target="_blank"
                         class="btn-enlace">
+
                         🎮 Jugar Ahora
+
                     </a>
 
                 </div>
@@ -367,7 +446,8 @@
     <footer>
 
         <p>
-            💜 Portafolio de prácticas de <span>Graficación</span>
+            💜 Portafolio de prácticas de
+            <span>Graficación</span>
         </p>
 
         <p>
@@ -376,6 +456,7 @@
 
     </footer>
 
-</body>
-</html>
 
+</body>
+
+</html>
