@@ -1,173 +1,177 @@
 function setup() {
-  createCanvas(600, 250);
+  createCanvas(650, 300);
   angleMode(DEGREES);
 }
 
 function draw() {
   background(240);
 
-  // ETAPA 1: Oso bebé
+  // ETAPA 1: Cachorro recién nacido
   push();
-  translate(55, 125);
+  translate(60, 150);
   scale(0.45);
-  rotate(-5);
-  dibujarOso(1);
+  rotate(-4);
+  dibujarPerro(1);
   pop();
 
-  // ETAPA 2: Oso pequeño
+  // ETAPA 2: Cachorro pequeño
   push();
-  translate(170, 125);
+  translate(185, 150);
   scale(0.65);
-  rotate(4);
-  dibujarOso(2);
-  pop();
-
-  // ETAPA 3: Oso juvenil
-  push();
-  translate(285, 125);
-  scale(0.85);
-  rotate(-3);
-  dibujarOso(3);
-  pop();
-
-  // ETAPA 4: Oso adolescente
-  push();
-  translate(400, 125);
-  scale(1.05);
   rotate(3);
-  dibujarOso(4);
+  dibujarPerro(2);
   pop();
 
-  // ETAPA 5: Oso adulto
+  // ETAPA 3: Perro joven
   push();
-  translate(520, 125);
-  scale(1.15);
+  translate(315, 150);
+  scale(0.85);
   rotate(-2);
-  dibujarOso(5);
+  dibujarPerro(3);
+  pop();
+
+  // ETAPA 4: Perro adulto
+  push();
+  translate(455, 150);
+  scale(1.05);
+  rotate(2);
+  dibujarPerro(4);
+  pop();
+
+  // ETAPA 5: Perro adulto mayor
+  push();
+  translate(585, 150);
+  scale(1.10);
+  rotate(-2);
+  dibujarPerro(5);
   pop();
 }
 
 
+// ======================================
+// FUNCIÓN QUE DIBUJA AL PERRO
+// ======================================
 
-// FUNCIÓN QUE DIBUJA LA CABEZA DEL OSO
-
-function dibujarOso(etapa) {
+function dibujarPerro(etapa) {
 
   stroke(45);
   strokeWeight(5);
 
-  // Color del oso
+  // Color del perro según su etapa
   if (etapa == 1) {
-    fill(210, 170, 125);
-  } 
+    fill(220, 175, 120);
+  }
   else if (etapa == 2) {
-    fill(190, 145, 100);
-  } 
+    fill(205, 155, 100);
+  }
   else if (etapa == 3) {
-    fill(165, 115, 75);
-  } 
+    fill(190, 135, 85);
+  }
   else if (etapa == 4) {
-    fill(140, 90, 55);
-  } 
+    fill(170, 115, 70);
+  }
   else {
-    fill(115, 70, 42);
+    fill(150, 100, 65);
   }
 
   // Orejas
-  ellipse(-35, -38, 35, 35);
-  ellipse(35, -38, 35, 35);
-
-  // Interior de las orejas
-  fill(235, 185, 155);
-  ellipse(-35, -38, 18, 18);
-  ellipse(35, -38, 18, 18);
+  ellipse(-38, -35, 35, 55);
+  ellipse(38, -35, 35, 55);
 
   // Cabeza
-  if (etapa == 1) {
-    fill(210, 170, 125);
-  } 
-  else if (etapa == 2) {
-    fill(190, 145, 100);
-  } 
-  else if (etapa == 3) {
-    fill(165, 115, 75);
-  } 
-  else if (etapa == 4) {
-    fill(140, 90, 55);
-  } 
-  else {
-    fill(115, 70, 42);
-  }
-
   ellipse(0, 0, 90, 80);
+
+  // Hocico
+  fill(245, 220, 185);
+  ellipse(0, 18, 48, 35);
 
   // Ojos
   fill(35);
-  ellipse(-18, -8, 9, 9);
-  ellipse(18, -8, 9, 9);
-
-  // Hocico
-  fill(245, 220, 190);
-  ellipse(0, 17, 45, 34);
+  ellipse(-18, -10, 10, 10);
+  ellipse(18, -10, 10, 10);
 
   // Nariz
-  fill(30);
-  ellipse(0, 12, 14, 11);
+  fill(25);
+  ellipse(0, 10, 15, 12);
+
+  // Boca
+  stroke(45);
+  strokeWeight(3);
+  line(0, 16, 0, 25);
+  arc(-7, 25, 14, 10, 0, 180);
+  arc(7, 25, 14, 10, 0, 180);
 
 
-  
-  // CAMBIOS EN CADA ETAPA
-  
+  // ======================================
+  // CAMBIOS SEGÚN LA ETAPA DE VIDA
+  // ======================================
 
-  // ETAPA 1: Bebé
+  // ETAPA 1: Cachorro recién nacido
   if (etapa == 1) {
-    fill(245, 150, 170);
-    ellipse(0, 38, 18, 8);
+
+    // Manchita pequeña
+    fill(130, 80, 45);
+    ellipse(-25, 5, 10, 11);
   }
 
 
-  // ETAPA 2: Moño
+  // ETAPA 2: Cachorro pequeño
   if (etapa == 2) {
-    fill(220, 40, 60);
 
-    ellipse(-12, 45, 20, 16);
-    ellipse(12, 45, 20, 16);
-    ellipse(0, 45, 9, 9);
+    // Manchita más grande
+    fill(130, 80, 45);
+    ellipse(-25, 5, 10, 12);
+
+    // Collar
+    fill(220, 40, 60);
+    rectMode(CENTER);
+    rect(0, 38, 45, 7);
   }
 
 
-  // ETAPA 3: GORRA CENTRADA
+  // ETAPA 3: Perro joven
   if (etapa == 3) {
 
-    fill(40, 100, 190);
+    // Collar azul
+    fill(40, 100, 200);
+    rectMode(CENTER);
+    rect(0, 38, 48, 7);
 
-     // Parte superior de la gorra
-  ellipse(0, -48, 48, 20);
-
-  // Rayita de la gorra
-  rectMode(CENTER);
-  rect(0, -41, 35, 7);
-}
-
-
-  // ETAPA 4: Cejas
-  if (etapa == 4) {
-
-    stroke(45);
-    strokeWeight(5);
-
-    line(-25, -20, -10, -23);
-    line(10, -23, 25, -20);
+    // Placa
+    fill(220, 190, 40);
+    ellipse(0, 47, 12, 12);
   }
 
 
-  // ETAPA 5: Cejas
+  // ETAPA 4: Perro adulto
+  if (etapa == 4) {
+
+    // Collar verde
+    fill(50, 150, 80);
+    rectMode(CENTER);
+    rect(0, 38, 50, 8);
+
+    // Placa
+    fill(230, 200, 50);
+    ellipse(0, 48, 13, 13);
+  }
+
+
+  // ETAPA 5: Perro adulto mayor
   if (etapa == 5) {
 
-    stroke(45);
-    strokeWeight(6);
+    // Pelaje con algunas canas
+    fill(220);
+    ellipse(-28, -25, 9, 9);
+    ellipse(28, -25, 9, 9);
 
-    line(-27, -21, -8, -25);
-    line(8, -25, 27, -21);
+    // Collar
+    fill(100, 100, 100);
+    rectMode(CENTER);
+    rect(0, 38, 50, 8);
+
+    // Placa
+    fill(180);
+    ellipse(0, 48, 13, 13);
   }
 }
