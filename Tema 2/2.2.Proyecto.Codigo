@@ -1,0 +1,506 @@
+
+let logoTec, logoISC, fotoDirectora;
+let luces = true;
+let escala, offsetX, offsetY;
+let brillo = 0;
+let movimiento = 0;
+let balanceo = 0;
+
+async function setup() {
+  createCanvas(windowWidth, windowHeight);
+  rectMode(CENTER);
+  imageMode(CENTER);
+  textAlign(CENTER, CENTER);
+
+  logoTec = await loadImage("tec.png");
+  logoISC = await loadImage("sistemas.png");
+  fotoDirectora = await loadImage("directora.png");
+}
+
+function draw() {
+  background(54, 27, 76);
+
+  escala = min(width / 900, height / 650);
+  offsetX = (width - 900 * escala) / 2;
+  offsetY = (height - 650 * escala) / 2;
+
+  brillo += 0.08;
+  movimiento = sin(frameCount * 0.07) * 4;
+  balanceo = sin(frameCount * 0.04) * 2;
+
+  push();
+  translate(offsetX, offsetY);
+  scale(escala);
+
+  dibujarFondo();
+  dibujarPapelPicado();
+  dibujarMarcos();
+  dibujarLogos();
+  dibujarRetrato();
+  dibujarMesas();
+  dibujarCircuitos();
+
+  // Pan sobre el nivel superior
+  dibujarPan(220, 320);
+  dibujarPan(350, 320);
+  dibujarPan(550, 320);
+  dibujarPan(679, 320);
+
+  // Pan sobre el nivel intermedio
+  dibujarPan(500, 380);
+  dibujarPan(400, 380);
+
+  // Platos con frutas
+  dibujarFrutas(235, 380);
+  dibujarFrutas(665, 380);
+  dibujarFrutas(180, 460);
+  dibujarFrutas(720, 460);
+
+  // Velas del nivel superior
+  dibujarVela(300, 350);
+  dibujarVela(600, 350);
+
+  // Velas inferiores
+  dibujarVela(246, 455);
+  dibujarVela(647, 455);
+
+  // Flores decorativas
+  dibujarFlor(110, 330, 1);
+  dibujarFlor(175, 390, 0.8);
+  dibujarFlor(260, 340, 0.8);
+  dibujarFlor(640, 340, 0.8);
+  dibujarFlor(730, 390, 0.8)
+  dibujarFlor(790, 330, 1);
+  dibujarFlor(340, 490, 0.7)
+  dibujarFlor(560, 490, 0.7);
+  dibujarFlor(290, 465, 0.6)
+  dibujarFlor(390, 420, 0.55);
+  dibujarFlor(510, 420, 0.55)
+  dibujarFlor(610, 465, 0.6)
+ 
+
+  dibujarCalavera(450, 455);
+  dibujarLuz();
+
+  fill(255, 220, 155);
+  noStroke();
+  textStyle(BOLD);
+  textSize(17);
+  text("ALTAR DIGITAL: MEMORIA Y TECNOLOGÍA", 450, 625);
+  textStyle(NORMAL);
+
+  pop();
+}
+
+function dibujarFondo() {
+  noStroke();
+
+  fill(75, 39, 94, 100);
+  circle(450, 230, 350);
+  circle(450, 230, 300);
+
+  fill(255, 190, 100, 15 + sin(brillo) * 10);
+  circle(450, 230, 390);
+
+  fill(255, 224, 165);
+  circle(55, 35, 3);
+  circle(160, 80, 3);
+  circle(250, 40, 3);
+  circle(360, 85, 3);
+  circle(550, 40, 3);
+  circle(660, 80, 3);
+  circle(800, 40, 3);
+  circle(850, 110, 3);
+  circle(90, 235, 3);
+  circle(800, 225, 3);
+  circle(240, 180, 2);
+  circle(650, 160, 2);
+  circle(350, 230, 2);
+  circle(570, 230, 2);
+}
+
+function dibujarPapelPicado() {
+  dibujarPapel(100, 48, [255, 100, 125]);
+  dibujarPapel(205, 48, [255, 190, 75]);
+  dibujarPapel(310, 48, [80, 220, 180]);
+  dibujarPapel(415, 48, [180, 125, 255]);
+  dibujarPapel(520, 48, [255, 100, 125]);
+  dibujarPapel(625, 48, [255, 190, 75]);
+  dibujarPapel(730, 48, [80, 220, 180]);
+  dibujarPapel(835, 48, [180, 125, 255]);
+}
+
+function dibujarPapel(x, y, colorPapel) {
+  push();
+  translate(x, y + sin(frameCount * 0.04 + x) * 3);
+  rotate(sin(frameCount * 0.03 + x) * 0.035);
+
+  noStroke();
+  fill(colorPapel[0], colorPapel[1], colorPapel[2]);
+  rect(0, 0, 48, 42, 4);
+
+  fill(50, 20, 65);
+  circle(-12, -15, 8);
+  circle(12, -15, 8);
+  circle(0, 0, 6);
+  circle(-10, 11, 4);
+  circle(10, 11, 4);
+
+  fill(255, 230, 180);
+  circle(0, 12, 4);
+  pop();
+}
+
+function dibujarMarcos() {
+  noFill();
+  stroke(255, 190, 80, 200);
+  strokeWeight(2);
+  rect(160, 165, 130, 105, 10);
+  rect(740, 165, 140, 130, 10);
+
+  noStroke();
+  fill(255, 190, 80);
+  circle(98, 125, 5);
+  circle(222, 125, 5);
+  circle(670, 100, 5);
+  circle(810, 100, 5);
+}
+
+function dibujarLogos() {
+  noStroke();
+
+  fill(255, 250, 238);
+  rect(160, 165, 112, 86, 5);
+
+  fill(255);
+  rect(740, 165, 112, 100, 5);
+
+  image(logoTec, 160, 165, 100, 75);
+  image(logoISC, 740, 165, 96, 88);
+
+  noFill();
+  stroke(255, 190, 80);
+  strokeWeight(2);
+  rect(160, 165, 130, 105, 8);
+  rect(740, 165, 140, 130, 8);
+
+  noStroke();
+  fill(255, 220, 150);
+  textStyle(BOLD);
+  textSize(11);
+  text("TECNM", 160, 225);
+
+
+  fill(255, 240, 210);
+  textStyle(NORMAL);
+  textSize(9);
+  text("ISC", 740, 242);
+}
+
+function dibujarRetrato() {
+  noStroke();
+
+  fill(255, 190, 80);
+  rect(450, 165, 146, 150, 8);
+
+  fill(80, 40, 75);
+  rect(450, 165, 136, 140, 5);
+
+  image(fotoDirectora, 450, 160, 126, 130);
+
+  dibujarFlor(405, 95, 0.65);
+  dibujarFlor(495, 95, 0.65);
+
+  fill(255, 225, 165);
+  textStyle(BOLD);
+  textSize(13);
+  text("Paoly Perera Maldonado", 450, 250);
+
+  fill(255, 190, 100);
+  textSize(10);
+  text("SIEMPRE EN NUESTRA MEMORIA", 450, 270);
+
+  fill(255, 225, 165);
+  textStyle(ITALIC);
+  textSize(12);
+  text("Tecnología que deja huella", 450, 290);
+
+  textStyle(NORMAL);
+}
+
+function dibujarMesas() {
+  noStroke();
+
+  fill(75, 35, 82);
+  rect(450, 510, 660, 110, 8);
+
+  fill(130, 55, 95);
+  rect(450, 425, 660, 100, 8);
+
+  fill(175, 80, 105);
+  rect(450, 350, 560, 65, 8);
+
+  fill(255, 190, 85);
+  rect(450, 390, 660, 5);
+  rect(450, 475, 660, 5);
+  rect(450, 315, 430, 5);
+
+  fill(255, 215, 140);
+  rect(450, 535, 680, 4);
+
+  fill(255, 175, 65);
+  circle(75, 560, 8);
+  circle(125, 560, 8);
+  circle(175, 560, 8);
+  circle(225, 560, 8);
+  circle(275, 560, 8);
+  circle(325, 560, 8);
+  circle(375, 560, 8);
+  circle(425, 560, 8);
+  circle(475, 560, 8);
+  circle(525, 560, 8);
+  circle(575, 560, 8);
+  circle(625, 560, 8);
+  circle(675, 560, 8);
+  circle(725, 560, 8);
+  circle(775, 560, 8);
+  circle(825, 560, 8);
+}
+
+function dibujarCircuitos() {
+  stroke(50, 225, 185);
+  strokeWeight(2);
+
+  line(90, 280, 130, 280);
+  line(130, 280, 130, 300);
+  line(130, 300, 155, 300);
+  circle(90, 280, 5);
+  circle(155, 300, 5);
+
+  line(770, 280, 810, 280);
+  line(810, 280, 810, 300);
+  line(810, 300, 835, 300);
+  circle(770, 280, 5);
+  circle(835, 300, 5);
+
+  line(375, 345, 405, 345);
+  line(375, 352, 400, 352);
+  line(375, 359, 395, 359);
+
+  line(495, 345, 525, 345);
+  line(500, 352, 525, 352);
+  line(505, 359, 525, 359);
+
+  noStroke();
+}
+
+function dibujarVela(x, y) {
+  push();
+  translate(x, y);
+
+  noStroke();
+
+  fill(255, 220, 175);
+  rect(0, 20, 30, 55, 5);
+
+  fill(255, 180, 90);
+  rect(0, 45, 36, 7, 3);
+
+  push();
+  translate(0, -15);
+  rotate(sin(frameCount * 0.12 + x) * 0.12);
+  scale(1, 0.85 + 0.15 * sin(frameCount * 0.16 + x));
+
+  fill(255, 100, 35, 35);
+  ellipse(0, 0, 45, 55);
+
+  fill(255, 125, 40, 120);
+  ellipse(0, 0, 28, 42);
+
+  fill(255, 190, 55);
+  ellipse(0, 0, 18, 30);
+
+  fill(255, 250, 195);
+  ellipse(0, 4, 8, 16);
+
+  pop();
+  pop();
+}
+
+function dibujarFlor(x, y, tam) {
+  push();
+  translate(x, y);
+  rotate(sin(frameCount * 0.04 + x) * 0.08);
+  scale(tam);
+
+  noStroke();
+  fill(255, 120, 20);
+
+  ellipse(0, -13, 11, 25);
+  rotate(PI / 3);
+  ellipse(0, -13, 11, 25);
+  rotate(PI / 3);
+  ellipse(0, -13, 11, 25);
+  rotate(PI / 3);
+  ellipse(0, -13, 11, 25);
+  rotate(PI / 3);
+  ellipse(0, -13, 11, 25);
+  rotate(PI / 3);
+  ellipse(0, -13, 11, 25);
+
+  fill(255, 180, 35);
+  circle(0, 0, 19);
+
+  fill(115, 45, 25);
+  circle(0, 0, 10);
+
+  fill(255, 230, 95);
+  circle(0, 0, 5);
+
+  pop();
+}
+
+function dibujarPan(x, y) {
+  push();
+  translate(x, y);
+
+  noStroke();
+
+  // Sombra sobre la superficie
+  fill(95, 45, 55, 100);
+  ellipse(0, 10, 46, 8);
+
+  // Pan
+  fill(220, 145, 75);
+  ellipse(0, 0, 43, 25);
+
+  fill(255, 210, 145);
+  ellipse(0, -4, 34, 18);
+
+  fill(230, 160, 85);
+  ellipse(-10, -5, 9, 15);
+  ellipse(10, -5, 9, 15);
+
+  fill(255, 235, 180);
+  ellipse(0, -7, 8, 8);
+
+  pop();
+}
+
+function dibujarFrutas(x, y) {
+  push();
+  translate(x, y);
+
+  noStroke();
+
+  // Plato
+  fill(180, 105, 65);
+  ellipse(0, 8, 86, 16);
+
+  fill(255, 220, 155);
+  ellipse(0, 5, 78, 10);
+
+  // Frutas dentro del plato
+  fill(220, 55, 65);
+  ellipse(-23, -5, 19, 19);
+  ellipse(-7, -10, 19, 19);
+
+  fill(255, 155, 35);
+  ellipse(11, -5, 18, 18);
+  ellipse(25, -7, 17, 17);
+
+  fill(255, 215, 65);
+  ellipse(-8, -20, 21, 8);
+  ellipse(10, -21, 21, 8);
+
+  fill(65, 160, 75);
+  ellipse(-8, -25, 9, 5);
+  ellipse(10, -26, 9, 5);
+
+  pop();
+}
+
+function dibujarCalavera(x, y) {
+  push();
+  translate(x + balanceo, y + movimiento);
+
+  noStroke();
+
+  // Cuerpo
+  fill(75, 180, 170);
+  rect(0, 48, 32, 30, 6);
+
+  fill(255, 240, 215);
+  rect(-16, 43, 10, 27, 5);
+  rect(16, 43, 10, 27, 5);
+  rect(-9, 76, 9, 17, 4);
+  rect(9, 76, 9, 17, 4);
+
+  // Cabeza balanceándose ligeramente
+  push();
+  rotate(sin(frameCount * 0.06) * 0.035);
+
+  fill(255, 240, 215);
+  ellipse(0, 0, 70, 65);
+
+  fill(255, 110, 140);
+  circle(-24, -15, 10);
+  circle(24, -15, 10);
+
+  fill(70, 40, 80);
+  ellipse(-15, -5, 16, 20);
+  ellipse(15, -5, 16, 20);
+  triangle(-5, 10, 5, 10, 0, 18);
+
+  fill(255, 130, 150);
+  circle(-15, -5, 6);
+  circle(15, -5, 6);
+
+  stroke(100, 55, 85);
+  strokeWeight(2);
+  line(-13, 23, 13, 23);
+  line(-6, 20, -6, 27);
+  line(0, 20, 0, 27);
+  line(6, 20, 6, 27);
+
+  noStroke();
+  fill(255, 130, 25);
+  circle(-15, -29, 10);
+  circle(-5, -35, 10);
+  circle(5, -35, 10);
+  circle(15, -29, 10);
+
+  fill(255, 215, 80);
+  circle(-15, -29, 4);
+  circle(-5, -35, 4);
+  circle(5, -35, 4);
+  circle(15, -29, 4);
+
+  pop();
+  pop();
+}
+
+function dibujarLuz() {
+  let mx = (mouseX - offsetX) / escala;
+  let my = (mouseY - offsetY) / escala;
+
+  if (luces && mx >= 0 && mx <= 900 &&
+      my >= 0 && my <= 650) {
+    noStroke();
+
+    fill(255, 190, 80, 25);
+    circle(mx, my, 100);
+
+    fill(255, 225, 150, 35);
+    circle(mx, my, 45);
+  }
+}
+
+function mousePressed() {
+  luces = !luces;
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+                                                                                          
