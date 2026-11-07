@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: './', // Esto es clave para que las rutas de los assets sean relativas
+  base: '/Graficacion_Portafolio_DanielaSalazar/Tema3/AA.3.2.Escena/',
 })
