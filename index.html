@@ -61,6 +61,19 @@
             gap: 24px;
         }
 
+        /* Centrado especial para secciones con pocas tarjetas (como Unidad 2) */
+        .grid-actividades--centrada {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .grid-actividades--centrada .tarjeta-actividad {
+            flex: 0 1 360px;
+            max-width: 380px;
+        }
+
         .tarjeta-actividad {
             position: relative;
             background: rgba(255, 255, 255, 0.12);
@@ -131,6 +144,11 @@
 
             .grid-actividades {
                 grid-template-columns: 1fr;
+            }
+
+            .grid-actividades--centrada .tarjeta-actividad {
+                flex: 1 1 100%;
+                max-width: 100%;
             }
 
             .tarjeta-actividad {
@@ -215,7 +233,7 @@
         <!-- ==================== UNIDAD 2 ==================== -->
         <section class="unidad-seccion">
             <h2>Unidad 2: Graficación 2D</h2>
-            <div class="grid-actividades">
+            <div class="grid-actividades--centrada">
 
                 <!-- ACTIVIDAD 2.1 -->
                 <div class="tarjeta-actividad">
@@ -272,6 +290,19 @@
                     </p>
                     <a href="./Tema3/AA.3.2.Escena/index.html" target="_blank" class="btn-enlace">
                         🧊 Ver Escena 3D
+                    </a>
+                </div>
+
+                <!-- ACTIVIDAD 3.3: PROYECTO 3D -->
+                <div class="tarjeta-actividad">
+                    <h3>🌐 Actividad 3.3: Proyecto 3D</h3>
+                    <p>
+                        Escena tridimensional con Three.js y Vite que integra pedestal,
+                        cubo con textura y sombras, esfera en movimiento, iluminación
+                        y controles orbitales de cámara.
+                    </p>
+                    <a href="./Tema3/AA.3.3.Proyecto3D/dist/index.html" target="_blank" class="btn-enlace">
+                        🌐 Ver Proyecto 3D
                     </a>
                 </div>
 
